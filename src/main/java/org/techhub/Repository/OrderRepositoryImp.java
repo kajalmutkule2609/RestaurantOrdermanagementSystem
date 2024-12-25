@@ -58,7 +58,7 @@ public class OrderRepositoryImp extends DBUser implements OrderRepository {
 	public List<OrderModel> ViewOrderByTableNo(int tableNo) {
 
 
-		String Query = "Select * from OrderMaster where tableNo = ?";
+		String Query = "Select * from OrderMaster where tableNo = ? and OrderStatus='Pending'";
 		list = new ArrayList<OrderModel>();
 		try {
 			stmt = conn.prepareStatement(Query);
@@ -150,7 +150,6 @@ public class OrderRepositoryImp extends DBUser implements OrderRepository {
 	        stmt.setDouble(1, billAmount);
 	        stmt.setInt(2, tableNo);
 
-	       // setOrderIdValues(stmt, orderIds, 3);
 
 	        int result = stmt.executeUpdate();
 	       if(result>0) {
@@ -171,17 +170,6 @@ public class OrderRepositoryImp extends DBUser implements OrderRepository {
 	    }
 	    return false;
 	}
-
-//	private String getOrderIdPlaceholders(List<Integer> orderIds) {
-//	    return String.join(",", Collections.nCopies(orderIds.size(), "?"));
-//	}
-//
-//	private void setOrderIdValues(PreparedStatement stmt, List<Integer> orderIds, int startIndex) throws SQLException {
-//	    for (int i = 0; i < orderIds.size(); i++) {
-//	        stmt.setInt(startIndex + i, orderIds.get(i));
-//	    }
-//	}
-
 
 }
 

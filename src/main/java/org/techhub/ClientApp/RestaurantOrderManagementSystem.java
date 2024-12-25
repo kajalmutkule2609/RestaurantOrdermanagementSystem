@@ -257,6 +257,8 @@ public class RestaurantOrderManagementSystem {
 					//System.out.println("OrderIds are:"+orderIds);
 					if(orderService.completePayment(amount,tableNo1)) {
 						System.out.println("Payment is Completed..");
+						System.err.println("\n\n🩷🤗🤗🩷..THANK YOU..VISIT AGAIN..🩷🤗🤗🩷\n");
+						System.exit(0);
 					}
 					else {
 						System.out.println("Payment Not Completed !!! Check Amount ...");
@@ -272,12 +274,14 @@ public class RestaurantOrderManagementSystem {
 		} else if (staffService.validateUser(userEmail1, password1).equalsIgnoreCase("Admin")) {
 			logger.info("User Validated Successfully.....");
 			do {
+				System.out.println("\n________________________________");
 				System.out.println("0:LOGOUT");
 				System.out.println("1:CUTOMER");
 				System.out.println("2:STAFF");
 				System.out.println("3:MENU");
 				System.out.println("4:DISHES");
 				System.out.println("5:ORDERS");
+				System.out.println("\n________________________________");
 
 				System.out.print("Enter Choice:");
 				int choice = sc.nextInt();
@@ -751,6 +755,7 @@ public class RestaurantOrderManagementSystem {
 					logger.info("Generating Bill...");
 					System.out.print("Enter TableNo:");
 					tableNo = sc.nextInt();
+					tableNo1=tableNo;
 					List<OrderModel> orders = orderService.ViewOrderByTableNo(tableNo);
 					generateBill(orders, orderService);
 					break;
@@ -759,9 +764,9 @@ public class RestaurantOrderManagementSystem {
 					System.out.println("_________________________________________________________");
 					System.out.print("Enter Bill Amount:");
 					double amount=sc.nextDouble();
-					//System.out.println("OrderIds are:"+orderIds);
 					if(orderService.completePayment(amount,tableNo1)) {
 						System.out.println("Payment is Completed..");
+						System.out.println("\n___________________________");
 					}
 					else {
 						System.out.println("Payment Not Completed !!! Check Amount ...");
